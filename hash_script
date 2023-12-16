@@ -1,0 +1,25 @@
+# Hash function for a 4-digit interger - run using source hash_script <your_4_digit_integer>
+hash_input() {
+    # Check if a 4-digit integer is provided as an argument
+    if [ "$#" -ne 1 ] || ! [[ "$1" =~ ^[0-9]{4}$ ]]; then
+        echo "Usage: hash_input <4-digit-integer>"
+        return 1
+    fi
+
+    # Get the input integer from the function argument
+    local input_integer="$1"
+
+    # Calculate the hash using SHA-256
+    local hash_output=$(echo -n "$input_integer" | sha256sum | awk '{print $1}')
+
+    # Output the hash
+    echo "Hash of $input_integer: $hash_output"
+
+    # Save the output to a file named hash_output.txt
+    echo "$hash_output" > hash_output.txt
+
+    echo "Hash saved to hash_output.txt"
+}
+
+# Call the hash_input function with the provided argument
+hash_input "$1"

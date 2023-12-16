@@ -1,4 +1,5 @@
 # Hash function for a 4-digit interger - run using source hash_script <your_4_digit_integer>
+# To generate hash_output.txt I used 0415
 hash_input() {
     # Check if a 4-digit integer is provided as an argument
     if [ "$#" -ne 1 ] || ! [[ "$1" =~ ^[0-9]{4}$ ]]; then
